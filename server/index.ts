@@ -18,10 +18,11 @@ const appRouter = router({
     const description = opts.input.description;
     const todo = { title: title, description: description };
     //do db stuff
-    return todo;
+    return "todo";
   }),
 
   signUp: publicProcedure.input(signUpType).mutation(async (opts) => {
+    const user = opts.ctx.username;
     const { username, password } = opts.input;
     // do authentication logic
     return {
@@ -32,17 +33,15 @@ const appRouter = router({
 
 const server = createHTTPServer({
   router: appRouter,
-  createContext(opts) {
+  createContext(opts){
     let authHeader = opts.req.headers["authorization"];
-    //jwt.verify
     return {
-       username : "12"
-    }
+      username : "123"
+    };
   }
 });
-
 server.listen(3000);
 
-// Export type router type signature,
-// NOT the router itself.
 export type AppRouter = typeof appRouter;
+
+
