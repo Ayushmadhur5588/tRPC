@@ -25,6 +25,7 @@ const appRouter = router({
     const user = opts.ctx.username;
     const { username, password } = opts.input;
     // do authentication logic
+    // jwt sign 
     return {
       token: "daljlwqjlj1213",
     };
